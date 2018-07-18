@@ -15,6 +15,61 @@ Autoptimize's API code which allows this plugin's add_filter to enable pre-gzip 
   }
 ```
 
+# Install
+
+You can upload contents of this repository to `wp-content/plugins/autoptimize-gzip` directory you manually create and actiavte plugin from within Wordpress Admin.
+
+Or for [Centmin Mod LEMP stack Nginx users](https://centminmod.com), install from SSH command line - replacing domain variable `domain.com` with your domain name:
+
+```
+domain=domain.com
+cd /home/nginx/domains/$domain/public/wp-content/plugins/
+mkdir -p autoptimize-gzip
+wget -O /home/nginx/domains/$domain/public/wp-content/plugins/autoptimize-gzip/autoptimize-gzip.php https://github.com/centminmod/autoptimize-gzip/raw/master/autoptimize-gzip.php
+wget -O /home/nginx/domains/$domain/public/wp-content/plugins/autoptimize-gzip/index.html https://github.com/centminmod/autoptimize-gzip/raw/master/index.html
+wget -O /home/nginx/domains/$domain/public/wp-content/plugins/autoptimize-gzip/readme.md https://github.com/centminmod/autoptimize-gzip/blob/master/readme.md
+wget -O /home/nginx/domains/$domain/public/wp-content/plugins/autoptimize-gzip/LICENSE https://github.com/centminmod/autoptimize-gzip/raw/master/LICENSE
+chown -R nginx:nginx /home/nginx/domains/$domain/public/wp-content/plugins/autoptimize-gzip
+ls -lah /home/nginx/domains/$domain/public/wp-content/plugins/autoptimize-gzip
+cd /home/nginx/domains/$domain/public
+wp plugin activate autoptimize-gzip
+wp plugin status autoptimize-gzip
+```
+
+Activate plugin
+
+```
+domain=domain.com
+cd /home/nginx/domains/$domain/public
+
+wp plugin activate autoptimize-gzip  
+Plugin 'autoptimize-gzip' activated.
+Success: Activated 1 of 1 plugins.
+```
+
+Check Status of plugin
+
+```
+domain=domain.com
+cd /home/nginx/domains/$domain/public
+
+wp plugin status autoptimize-gzip
+Plugin autoptimize-gzip details: Name: Autoptimize Gzip Status: Active Version: 0.1 Author: George Liu Description: Hook into Frank Goossens (futtta) Autoptimize API to pre-compress CSS/JS files
+```
+
+Deactivate plugin
+
+```
+domain=domain.com
+cd /home/nginx/domains/$domain/public
+
+wp plugin deactivate autoptimize-gzip
+Plugin 'autoptimize-gzip' deactivated.
+Success: Deactivated 1 of 1 plugins.
+```
+
+# Example
+
 Pre-gzip compressed Autoptimized CSS & JS files
 
 ```
