@@ -15,6 +15,8 @@ Autoptimize's API code which allows this plugin's add_filter to enable pre-gzip 
   }
 ```
 
+Contributions, comments or corrections for WP plugin code are welcomed !
+
 # Install
 
 You can upload contents of this repository to `wp-content/plugins/autoptimize-gzip` directory you manually create and actiavte plugin from within Wordpress Admin.
