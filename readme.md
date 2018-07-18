@@ -85,6 +85,8 @@ Success: Deactivated 1 of 1 plugins.
 
 # Example
 
+Autoptimize Gzip companion Wordpress plugin is now installed on my [Wordpress7 Demo Site](https://wordpress7.centminmod.com/) for testing.
+
 Pre-gzip compressed Autoptimized CSS & JS files on [Centmin Mod LEMP stack Nginx](https://centminmod.com) installed Wordpress site ([Webpagetest benchmarks](https://community.centminmod.com/posts/65227/)).
 
 ```
