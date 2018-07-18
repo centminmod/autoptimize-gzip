@@ -6,6 +6,19 @@ This Autoptimize Gzip Wordpress plugin is a companion plugin to [Autoptimize Wor
 add_filter('autoptimize_filter_cache_create_static_gzip','__return_true');
 ```
 
+## Pre-Gzip Compressed Benchmarks
+
+For Nginx users, [gzip_static directive](https://nginx.org/en/docs/http/ngx_http_gzip_static_module.html) allows Nginx to serve pre-gzip compressed versions of static files if they're detected. How much faster ar e pre-gzip compressed static file serving with Nginx ? [Benchmarks](https://community.centminmod.com/threads/nginx-with-cloudflare-zlib-fork-vs-nxg_brotli-compression-level-tests.13820/#post-63601) show that Centmin Mod Nginx with default Cloudflare performance forked zlib library at level 5 gzip dynamic compression resulted in 21,906 requests/s. Pre-gzip compressed Centmin Mod Nginx with Cloudfare performance zlib library at level 5 gzip compression resulted in 72,443 requests/s. Yes 3.3x times faster !
+
+Also check out the average and max latency of requests. Pre-gzip compressed files had almost 64% faster average latency and 56.4% faster max latency times !
+
+| config | compressed size | req/s | avg latency | max latency
+| --- | --- | --- | --- | --- 
+|Centmin Mod Nginx zlib level 5 pre-compress static (cf fork) | 3.79KB | 72443 | 3.27ms | 32.38ms
+|Centmin Mod Nginx zlib level 5 dynamic (cf fork) | 4.12KB | 21906 | 9.07ms | 74.32ms
+
+## Autoptimize's API code
+
 Autoptimize's API code which allows this plugin's add_filter to enable pre-gzip compression:
 
 ```
