@@ -1,6 +1,6 @@
 # Autoptimize Pre Compress Files Wordpress Plugin
 
-This Autoptimize Gzip Wordpress plugin hooks into [Autoptimize's API](https://github.com/futtta/autoptimize/) to enable pre-gzip compression of Autoptimize'd CSS & JS files via an add_filter:
+This Autoptimize Gzip Wordpress plugin is a companion plugin to [Autoptimize Wordpress plugin](https://wordpress.org/plugins/autoptimize/) and hooks into [Autoptimize's API](https://github.com/futtta/autoptimize/) to enable pre-gzip compression of Autoptimize'd CSS & JS files via an add_filter:
 
 ```
 add_filter('autoptimize_filter_cache_create_static_gzip','__return_true');
