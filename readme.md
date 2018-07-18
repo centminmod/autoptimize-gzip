@@ -8,9 +8,9 @@ add_filter('autoptimize_filter_cache_create_static_gzip','__return_true');
 
 ## Pre-Gzip Compressed Benchmarks
 
-For Nginx users, [gzip_static directive](https://nginx.org/en/docs/http/ngx_http_gzip_static_module.html) allows Nginx to serve pre-gzip compressed versions of static files if they're detected. How much faster ar e pre-gzip compressed static file serving with Nginx ? [Benchmarks](https://community.centminmod.com/threads/nginx-with-cloudflare-zlib-fork-vs-nxg_brotli-compression-level-tests.13820/#post-63601) show that Centmin Mod Nginx with default Cloudflare performance forked zlib library at level 5 gzip dynamic compression resulted in 21,906 requests/s. Pre-gzip compressed Centmin Mod Nginx with Cloudfare performance zlib library at level 5 gzip compression resulted in 72,443 requests/s. Yes 3.3x times faster !
+For Nginx users, [gzip_static directive](https://nginx.org/en/docs/http/ngx_http_gzip_static_module.html) allows Nginx to serve pre-gzip compressed versions of static files if they're detected. How much faster are pre-gzip compressed static file serving with Nginx ? [Benchmarks](https://community.centminmod.com/threads/nginx-with-cloudflare-zlib-fork-vs-nxg_brotli-compression-level-tests.13820/#post-63601) show that Centmin Mod Nginx with default Cloudflare performance forked zlib library at level 5 gzip dynamic compression resulted in **21,906 requests/s**. Pre-gzip compressed files with Centmin Mod Nginx with Cloudfare performance zlib library at level 5 gzip compression, resulted in **72,443 requests/s**. Yes 3.3x times faster !
 
-Also check out the average and max latency of requests. Pre-gzip compressed files had almost 64% faster average latency and 56.4% faster max latency times !
+Besides the smaller sizes for pre-gzip compressed static file at 3.79KB versus on the fly dynamic compressed file size of 4.12KB, also check out the average and max latency of requests. Pre-gzip compressed files had almost 64% faster average latency and 56.4% faster max latency times !
 
 | config | compressed size | req/s | avg latency | max latency
 | --- | --- | --- | --- | --- 
