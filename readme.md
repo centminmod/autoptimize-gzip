@@ -70,7 +70,7 @@ Success: Deactivated 1 of 1 plugins.
 
 # Example
 
-Pre-gzip compressed Autoptimized CSS & JS files
+Pre-gzip compressed Autoptimized CSS & JS files on [Centmin Mod LEMP stack Nginx](https://centminmod.com) installed Wordpress site ([Webpagetest benchmarks](https://community.centminmod.com/posts/65227/)).
 
 ```
 ls -lah wp-content/cache/autoptimize/{css,js}
