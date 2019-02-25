@@ -12,6 +12,54 @@ add_filter('autoptimize_filter_cache_create_static_gzip','__return_true');
 * Centmin Mod users can do that via [enabling PHP_BROTLI='y' variable prior to PHP recompiles](https://community.centminmod.com/threads/add-additional-php-compression-extensions-by-default-in-123-09beta01.16616/) and ensuring they have Nginx Brotli module enabled via [NGXDYNAMIC_BROTLI='y' and NGINX_LIBBROTLI='y'](https://community.centminmod.com/threads/how-to-use-brotli-compression-for-centmin-mod-nginx-web-servers.10688/) variables prior to Centmin Mod Ngixn recompiles - which will also install [Brotli library](https://github.com/google/brotli/releases) required to do the actual Brotli compression.
 * If not using Centmin Mod LEMP stack, you will need to install [Brotli library](https://github.com/google/brotli/releases) and [PHP Brotli Extension](https://github.com/kjdev/php-ext-brotli) yourself.
 
+## Pre-Gzip vs Pre-Brotli Compressed Benchmarks
+
+Recently ran gzip and brotli precompressed benchmarks on my Centmin Mod Nginx LEMP stack for `pigz level 11 gzip for zopfli` vs `brotli level 11` at https://github.com/centminmod/centminmod-brotli-vs-gzip.
+
+The following 3 files are tested
+
+* https://code.jquery.com/jquery-3.3.1.min.js served from http://localhost/jquery-3.3.1.min.js
+* https://use.fontawesome.com/releases/v5.7.2/css/all.css served from http://localhost/fontawesome.css
+* https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css served from http://localhost/bootstrap.min.css
+
+```
+test-gzip_comp_level precompress
+http://localhost/fontawesome.css (gzip)
+Uncompressed-size: 53.17 KiB
+Compressed-size: 10.39 KiB
+Requests/sec:  14625.34
+
+test-gzip_comp_level precompress
+http://localhost/jquery-3.3.1.min.js (gzip)
+Uncompressed-size: 84.88 KiB
+Compressed-size: 28.57 KiB
+Requests/sec:  12508.26
+
+test-gzip_comp_level precompress
+http://localhost/bootstrap.min.css (gzip)
+Uncompressed-size: 152.10 KiB
+Compressed-size: 20.61 KiB
+Requests/sec:  12588.12
+
+test-brotli_comp_level precompress
+http://localhost/fontawesome.css (br)
+Uncompressed-size: 53.17 KiB
+Compressed-size: 9.38 KiB
+Requests/sec:  15153.08
+
+test-brotli_comp_level precompress
+http://localhost/jquery-3.3.1.min.js (br)
+Uncompressed-size: 84.88 KiB
+Compressed-size: 26.85 KiB
+Requests/sec:  12517.74
+
+test-brotli_comp_level precompress
+http://localhost/bootstrap.min.css (br)
+Uncompressed-size: 152.10 KiB
+Compressed-size: 16.74 KiB
+Requests/sec:  14108.05
+```
+
 ## Pre-Gzip Compressed Benchmarks
 
 For Nginx users, [gzip_static directive](https://nginx.org/en/docs/http/ngx_http_gzip_static_module.html) allows Nginx to serve pre-gzip compressed versions of static files if they're detected. How much faster are pre-gzip compressed static file serving with Nginx ? [Benchmarks](https://community.centminmod.com/threads/nginx-with-cloudflare-zlib-fork-vs-nxg_brotli-compression-level-tests.13820/#post-63601) show that Centmin Mod Nginx with default Cloudflare performance forked zlib library at level 5 gzip dynamic compression resulted in **21,906 requests/s**. Pre-gzip compressed files with Centmin Mod Nginx with Cloudfare performance zlib library at level 5 gzip compression, resulted in **72,443 requests/s**. Yes 3.3x times faster !
