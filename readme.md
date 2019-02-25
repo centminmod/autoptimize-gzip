@@ -14,6 +14,48 @@ add_filter('autoptimize_filter_cache_create_static_gzip','__return_true');
 * Centmin Mod users can do that via [enabling PHP_BROTLI='y' variable prior to PHP recompiles](https://community.centminmod.com/threads/add-additional-php-compression-extensions-by-default-in-123-09beta01.16616/) and ensuring they have Nginx Brotli module enabled via [NGXDYNAMIC_BROTLI='y' and NGINX_LIBBROTLI='y'](https://community.centminmod.com/threads/how-to-use-brotli-compression-for-centmin-mod-nginx-web-servers.10688/) variables prior to Centmin Mod Ngixn recompiles - which will also install [Brotli library](https://github.com/google/brotli/releases) required to do the actual Brotli compression.
 * If not using Centmin Mod LEMP stack, you will need to install [Brotli library](https://github.com/google/brotli/releases) and [PHP Brotli Extension](https://github.com/kjdev/php-ext-brotli) yourself.
 
+```
+ls -lah wp-content/cache/autoptimize/{css,js}
+wp-content/cache/autoptimize/css:
+total 480K
+drwxrwsrwx 2 nginx nginx 4.0K Feb 25 13:50 .
+drwxrwsrwx 4 nginx nginx 4.0K Feb 25 13:50 ..
+-rw-r--r-- 1 nginx nginx 167K Feb 25 13:50 autoptimize_d3e239245b3e0ab1497229cf52f5c68b.css
+-rw-r--r-- 1 nginx nginx  24K Feb 25 13:50 autoptimize_d3e239245b3e0ab1497229cf52f5c68b.css.br
+-rw-r--r-- 1 nginx nginx  30K Feb 25 13:50 autoptimize_d3e239245b3e0ab1497229cf52f5c68b.css.gz
+-rw-r--r-- 1 nginx nginx 9.5K Feb 25 13:50 autoptimize_snippet_77cc244151bca6686caf7a9c44c9cce2.css
+-rw-r--r-- 1 nginx nginx 1.9K Feb 25 13:50 autoptimize_snippet_77cc244151bca6686caf7a9c44c9cce2.css.br
+-rw-r--r-- 1 nginx nginx 2.3K Feb 25 13:50 autoptimize_snippet_77cc244151bca6686caf7a9c44c9cce2.css.gz
+-rw-r--r-- 1 nginx nginx  171 Feb 25 13:50 autoptimize_snippet_9c7e39ca0cdfdb09d68f8911c6ed0b7a.css
+-rw-r--r-- 1 nginx nginx  105 Feb 25 13:50 autoptimize_snippet_9c7e39ca0cdfdb09d68f8911c6ed0b7a.css.br
+-rw-r--r-- 1 nginx nginx  147 Feb 25 13:50 autoptimize_snippet_9c7e39ca0cdfdb09d68f8911c6ed0b7a.css.gz
+-rw-r--r-- 1 nginx nginx 157K Feb 25 13:50 autoptimize_snippet_a720e340daf2495254cacbe2c33f6e4a.css
+-rw-r--r-- 1 nginx nginx  23K Feb 25 13:50 autoptimize_snippet_a720e340daf2495254cacbe2c33f6e4a.css.br
+-rw-r--r-- 1 nginx nginx  28K Feb 25 13:50 autoptimize_snippet_a720e340daf2495254cacbe2c33f6e4a.css.gz
+-rwxrwxrwx 1 nginx nginx  189 Aug 21  2016 index.html
+
+wp-content/cache/autoptimize/js:
+total 124K
+drwxrwsrwx 2 nginx nginx 4.0K Feb 25 13:50 .
+drwxrwsrwx 4 nginx nginx 4.0K Feb 25 13:50 ..
+-rw-r--r-- 1 nginx nginx  22K Feb 25 13:50 autoptimize_9312fc02835c0d9c86d7a3537e251868.js
+-rw-r--r-- 1 nginx nginx 7.6K Feb 25 13:50 autoptimize_9312fc02835c0d9c86d7a3537e251868.js.br
+-rw-r--r-- 1 nginx nginx 8.6K Feb 25 13:50 autoptimize_9312fc02835c0d9c86d7a3537e251868.js.gz
+-rw-r--r-- 1 nginx nginx  15K Feb 25 13:50 autoptimize_snippet_29297b88a42936b62480d70a4fc3c51b.js
+-rw-r--r-- 1 nginx nginx 5.2K Feb 25 13:50 autoptimize_snippet_29297b88a42936b62480d70a4fc3c51b.js.br
+-rw-r--r-- 1 nginx nginx 5.8K Feb 25 13:50 autoptimize_snippet_29297b88a42936b62480d70a4fc3c51b.js.gz
+-rw-r--r-- 1 nginx nginx 1.1K Feb 25 13:50 autoptimize_snippet_70cc32f4967e3d4450b3917f937614e3.js
+-rw-r--r-- 1 nginx nginx  408 Feb 25 13:50 autoptimize_snippet_70cc32f4967e3d4450b3917f937614e3.js.br
+-rw-r--r-- 1 nginx nginx  527 Feb 25 13:50 autoptimize_snippet_70cc32f4967e3d4450b3917f937614e3.js.gz
+-rw-r--r-- 1 nginx nginx 2.5K Feb 25 13:50 autoptimize_snippet_8d69cb8f29130ffa6ab65ed2ec1ca745.js
+-rw-r--r-- 1 nginx nginx  934 Feb 25 13:50 autoptimize_snippet_8d69cb8f29130ffa6ab65ed2ec1ca745.js.br
+-rw-r--r-- 1 nginx nginx 1.2K Feb 25 13:50 autoptimize_snippet_8d69cb8f29130ffa6ab65ed2ec1ca745.js.gz
+-rw-r--r-- 1 nginx nginx 4.0K Feb 25 13:50 autoptimize_snippet_eb6b3b5989a0e07edb9d53abaca76799.js
+-rw-r--r-- 1 nginx nginx 1.6K Feb 25 13:50 autoptimize_snippet_eb6b3b5989a0e07edb9d53abaca76799.js.br
+-rw-r--r-- 1 nginx nginx 1.8K Feb 25 13:50 autoptimize_snippet_eb6b3b5989a0e07edb9d53abaca76799.js.gz
+-rwxrwxrwx 1 nginx nginx  189 Aug 21  2016 index.html
+```
+
 ## Pre-Gzip vs Pre-Brotli Compressed Benchmarks
 
 Recently ran gzip and brotli precompressed benchmarks on my Centmin Mod Nginx LEMP stack for `pigz level 11 gzip for zopfli` vs `brotli level 11` at https://github.com/centminmod/centminmod-brotli-vs-gzip.
