@@ -6,6 +6,12 @@ This Autoptimize Gzip Wordpress plugin is a companion plugin to [Autoptimize Wor
 add_filter('autoptimize_filter_cache_create_static_gzip','__return_true');
 ```
 
+**Update:** 
+
+* [Autoptimize Wordpress Plugin](https://github.com/futtta/autoptimize/) also [plans to add Brotli precompressed CSS/JS file](https://github.com/futtta/autoptimize/pull/237) support when above filter is enabled via installing my Autoptimize-gzip Wordpress plugin. You will need to enable/install [PHP Brotli Extension](https://github.com/kjdev/php-ext-brotli). 
+* Centmin Mod users can do that via [enabling PHP_BROTLI='y' variable prior to PHP recompiles](https://community.centminmod.com/threads/add-additional-php-compression-extensions-by-default-in-123-09beta01.16616/) and ensuring they have Nginx Brotli module enabled via [NGXDYNAMIC_BROTLI='y' and NGINX_LIBBROTLI='y'](https://community.centminmod.com/threads/how-to-use-brotli-compression-for-centmin-mod-nginx-web-servers.10688/) variables prior to Centmin Mod Ngixn recompiles - which will also install [Brotli library](https://github.com/google/brotli/releases) required to do the actual Brotli compression.
+* If not using Centmin Mod LEMP stack, you will need to install [Brotli library](https://github.com/google/brotli/releases) and [PHP Brotli Extension](https://github.com/kjdev/php-ext-brotli) yourself.
+
 ## Pre-Gzip Compressed Benchmarks
 
 For Nginx users, [gzip_static directive](https://nginx.org/en/docs/http/ngx_http_gzip_static_module.html) allows Nginx to serve pre-gzip compressed versions of static files if they're detected. How much faster are pre-gzip compressed static file serving with Nginx ? [Benchmarks](https://community.centminmod.com/threads/nginx-with-cloudflare-zlib-fork-vs-nxg_brotli-compression-level-tests.13820/#post-63601) show that Centmin Mod Nginx with default Cloudflare performance forked zlib library at level 5 gzip dynamic compression resulted in **21,906 requests/s**. Pre-gzip compressed files with Centmin Mod Nginx with Cloudfare performance zlib library at level 5 gzip compression, resulted in **72,443 requests/s**. Yes 3.3x times faster !
