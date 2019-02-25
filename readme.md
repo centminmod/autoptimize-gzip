@@ -6,6 +6,8 @@ This Autoptimize Gzip Wordpress plugin is a companion plugin to [Autoptimize Wor
 add_filter('autoptimize_filter_cache_create_static_gzip','__return_true');
 ```
 
+![autoptimize-gzip](/images/wp-autotpimize-gzip-plugin-01.png)
+
 **Update:** 
 
 * [Autoptimize Wordpress Plugin](https://github.com/futtta/autoptimize/) also [plans to add Brotli precompressed CSS/JS file](https://github.com/futtta/autoptimize/pull/237) support when above filter is enabled via installing my Autoptimize-gzip Wordpress plugin. You will need to enable/install [PHP Brotli Extension](https://github.com/kjdev/php-ext-brotli). 
